@@ -9,6 +9,8 @@ The prime objective of this project is to develop a general purpose e-commerce s
 1. Nikitha Kethireddy
 
 #### Team Members GitHub profile links:
+1. https://github.com/suma-gitrep
 1. https://github.com/Deepthi1003
 1. https://github.com/sushma95
 1. https://github.com/nikithakethireddy1996
+1. https://github.com/pinky407
