@@ -16,7 +16,8 @@ The prime objective of this project is to develop a general purpose e-commerce s
 1. https://github.com/nikithakethireddy1996
 
 ## Team Members Images
-1. ![image src =https://github.com/suma-gitrep/petschewy/blob/master/Selfie.jpg]
+1. <img src="https://github.com/suma-gitrep/petschewy/blob/master/Selfie.jpg" width="200" height="300"/>
+
 
 
 
