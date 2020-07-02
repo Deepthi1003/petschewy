@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "352065942203",
+    "firebase_url": "https://petsandroid-3c360.firebaseio.com",
+    "project_id": "petsandroid-3c360",
+    "storage_bucket": "petsandroid-3c360.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352065942203:android:6d696403ffda5d2759ef9e",
+        "android_client_info": {
+          "package_name": "com.example.petsandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352065942203-c572pkggismk014g0u1g2dgia9m36bfe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.petsandroid",
+            "certificate_hash": "80d852e9d10e6da7ad36a0fbd7103f8b579408be"
+          }
+        },
+        {
+          "client_id": "352065942203-t343rhptg44nn0qj3nok7khegai3pqfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOqdWVOw7v-nvP7U1UrTJOmMJneYgsKOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352065942203-t343rhptg44nn0qj3nok7khegai3pqfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
