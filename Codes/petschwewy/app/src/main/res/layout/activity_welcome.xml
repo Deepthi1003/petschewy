@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/azawakhdog"
-    tools:context=".MainActivity">
+    android:background="@drawable/azawakhdog">
 
 
     <ImageView
@@ -56,7 +55,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="-143dp"
         android:padding="20dp"
-        android:text="kNOW MORE"
+        android:text="KNOW MORE"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="18sp" />

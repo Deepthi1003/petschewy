@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class WelcomeActivity extends AppCompatActivity {
 
     Button main_join_now_btn, main_login_btn;
-    TextView SKIP;
+    TextView SKIP,KNOW_MORE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class WelcomeActivity extends AppCompatActivity {
         main_login_btn=findViewById(R.id.main_login_btn);
         main_join_now_btn=findViewById(R.id.main_join_now_btn);
         SKIP=findViewById(R.id.SKIP);
+        KNOW_MORE=findViewById(R.id.KNOWMORE);
 
         main_join_now_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,16 @@ public class WelcomeActivity extends AppCompatActivity {
                 intent = new Intent(WelcomeActivity.this, HomeActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        KNOW_MORE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent;
+                intent = new Intent(WelcomeActivity.this, KnowMoreActivity.class);
+                startActivity(intent);
             }
         });
     }
