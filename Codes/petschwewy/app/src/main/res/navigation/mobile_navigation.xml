@@ -14,14 +14,14 @@
     <fragment
         android:id="@+id/nav_wish"
         android:name="com.example.petsandroid.WishList.WishListFragment"
-        android:label="@string/menu_booking"
+        android:label="WishList"
         tools:layout="@layout/fragment_wishlist" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/nav_slideshow"-->
-<!--        android:name="com.example.getaservice.ui.About.AboutFragment"-->
-<!--        android:label="@string/menu_share"-->
-<!--        tools:layout="@layout/fragment_about" />-->
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.example.petsandroid.Settngs.SettingFragment"
+        android:label="@string/menu_setting"
+        tools:layout="@layout/activity_settins" />
 
     <fragment
         android:id="@+id/nav_share"
