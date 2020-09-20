@@ -4,31 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/azawakhdog"
-    >
+    android:background="@drawable/register"
+    tools:context=".RegisterActivity">
 
-    <ImageView
+    <TextView
         android:id="@+id/register_applogo"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PETSCHEWY"
+        android:textColor="@color/colorText"
+        android:textSize="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
-        android:src="@drawable/applogo" />
+        android:layout_marginTop="250dp"
+        />
 
     <EditText
         android:id="@+id/register_username_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/register_applogo"
+        android:background="@drawable/input_design"
+        android:padding="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="@drawable/input_design"
-        android:hint="Email"
+        android:layout_marginTop="20dp"
+        android:hint="Name"
         android:inputType="text"
-        android:padding="20dp"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
-        android:textSize="19sp" />
+        android:textSize="19sp"
+        />
 
     <EditText
         android:id="@+id/register_phone_number_input"
@@ -40,6 +45,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:hint="Phone Number"
+        android:inputType="number"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="19sp"

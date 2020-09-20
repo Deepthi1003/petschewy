@@ -5,14 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/azawakhdog"
-    >
+    android:background="@drawable/cuteback"
+    tools:context=".LoginActivity">
 
-    <ImageView
+    <TextView
         android:id="@+id/login_applogo"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:src="@drawable/applogo"
+        android:text="LOGIN"
+        android:textColor="@color/colorText"
+        android:textSize="49dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="195dp"
         />
@@ -26,8 +28,8 @@
         android:padding="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:hint="Phone Number"
+        android:inputType="number"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="19sp"
@@ -64,8 +66,10 @@
             android:id="@+id/remember_me_chkb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Material.Drawable.CheckBox"
             android:text="Remember me"
             android:textColor="@color/colorPrimaryDark"
+            app:cbd_strokeColor="@color/colorPrimaryDark"
             android:gravity="center_vertical"
             android:textSize="18sp"
             android:layout_marginLeft="17dp"
@@ -102,18 +106,18 @@
 
 
     <TextView
-        android:id="@+id/admin_panel_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I'm an Admin?"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/login_btn"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="80dp"
-        android:layout_marginEnd="23dp"
-        />
+    android:id="@+id/admin_panel_link"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="I'm an Admin?"
+    android:layout_alignParentEnd="true"
+    android:layout_below="@+id/login_btn"
+    android:textColor="@color/colorPrimaryDark"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:layout_marginLeft="80dp"
+    android:layout_marginEnd="23dp"
+    />
 
 
     <TextView
@@ -130,15 +134,5 @@
         android:layout_marginStart="25dp"
         android:visibility="invisible"
         />
-
-    <TextView
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_btn"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="New User? Signup here" />
 
 </RelativeLayout>
