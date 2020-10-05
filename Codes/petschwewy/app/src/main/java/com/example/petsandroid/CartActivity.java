@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class CartActivity extends AppCompatActivity
 {
     private RecyclerView recyclerView;
@@ -40,7 +43,7 @@ public class CartActivity extends AppCompatActivity
     private TextView txtTotalAmount, txtMsg1;
 
     private int overTotalPrice = 0;
-
+ArrayList<String> prodid;
 
 
     @Override
@@ -59,7 +62,7 @@ public class CartActivity extends AppCompatActivity
         txtTotalAmount = (TextView) findViewById(R.id.total_price);
         txtMsg1 = (TextView) findViewById(R.id.msg1);
 
-
+prodid=new ArrayList<String>();
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -103,7 +106,8 @@ public class CartActivity extends AppCompatActivity
 
                 int oneTyprProductTPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
                 overTotalPrice = overTotalPrice + oneTyprProductTPrice;
-
+                 prodid.add(model.getPid());
+                Log.d("product is", String.valueOf(prodid));
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view)
@@ -181,30 +185,30 @@ public class CartActivity extends AppCompatActivity
             {
                 if (dataSnapshot.exists())
                 {
-                    String shippingState = dataSnapshot.child("state").getValue().toString();
-                    String userName = dataSnapshot.child("name").getValue().toString();
+//                    String shippingState = dataSnapshot.child("state").getValue().toString();
+//                    String userName = dataSnapshot.child("name").getValue().toString();
 
-                    if (shippingState.equals("shipped"))
-                    {
-                        txtTotalAmount.setText("Dear " + userName + "\n order is shipped successfully.");
-                        recyclerView.setVisibility(View.GONE);
-
-                        txtMsg1.setVisibility(View.VISIBLE);
-                        txtMsg1.setText("Congratulations, your final order has been Shipped successfully. Soon you will received your order at your door step.");
-                        NextProcessBtn.setVisibility(View.GONE);
-
-                        Toast.makeText(CartActivity.this, "you can purchase more products, once you received your first final order.", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(shippingState.equals("not shipped"))
-                    {
-                        txtTotalAmount.setText("Shipping State = Not Shipped");
-                        recyclerView.setVisibility(View.GONE);
-
-                        txtMsg1.setVisibility(View.VISIBLE);
-                        NextProcessBtn.setVisibility(View.GONE);
-
-                        Toast.makeText(CartActivity.this, "you can purchase more products, once you received your first final order.", Toast.LENGTH_SHORT).show();
-                    }
+//                    if (shippingState.equals("shipped"))
+//                    {
+//                        txtTotalAmount.setText("Dear " + userName + "\n order is shipped successfully.");
+//                        recyclerView.setVisibility(View.GONE);
+//
+//                        txtMsg1.setVisibility(View.VISIBLE);
+//                        txtMsg1.setText("Congratulations, your final order has been Shipped successfully. Soon you will received your order at your door step.");
+//                        NextProcessBtn.setVisibility(View.GONE);
+//
+//                        Toast.makeText(CartActivity.this, "you can purchase more products, once you received your first final order.", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else if(shippingState.equals("not shipped"))
+//                    {
+//                        txtTotalAmount.setText("Shipping State = Not Shipped");
+//                        recyclerView.setVisibility(View.GONE);
+//
+//                        txtMsg1.setVisibility(View.VISIBLE);
+//                        NextProcessBtn.setVisibility(View.GONE);
+//
+//                        Toast.makeText(CartActivity.this, "you can purchase more products, once you received your first final order.", Toast.LENGTH_SHORT).show();
+//                    }
                 }
             }
 

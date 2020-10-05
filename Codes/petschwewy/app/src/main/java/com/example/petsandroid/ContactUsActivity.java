@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class ContactUsActivity extends AppCompatActivity {
-   Button button,emailIDBTN;
+   Button button;
 
 
     @Override
@@ -21,13 +21,12 @@ public class ContactUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contactus);
 
         button = (Button) findViewById(R.id.buttonCall);
-        emailIDBTN=(Button) findViewById(R.id.emailIDBTN);
-
 
         button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Uri number = Uri.parse("tel:+16605280951");
+            public void onClick(View arg0) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:+19255239060"));
+
                 if (ActivityCompat.checkSelfPermission(ContactUsActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
@@ -37,22 +36,6 @@ public class ContactUsActivity extends AppCompatActivity {
         });
 
 
-
-        emailIDBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(Intent.ACTION_SEND);
-                String[] recipients={"deepthitejaswini@gmail.com"};
-                intent.putExtra(Intent.EXTRA_EMAIL, recipients);
-                intent.putExtra(Intent.EXTRA_SUBJECT,"Questions to be Answered");
-                intent.putExtra(Intent.EXTRA_TEXT,"Kindly write your query here...");
-                intent.putExtra(Intent.EXTRA_CC,"dtchokka@gmail.com");
-                intent.setType("text/html");
-                intent.setPackage("com.google.android.gm");
-                startActivity(Intent.createChooser(intent, "Send mail"));
-            }
-        });
 
 
     }

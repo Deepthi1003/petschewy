@@ -40,7 +40,6 @@ public class AdminNewOrdersActivity extends AppCompatActivity
 
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
 
-
         ordersList = findViewById(R.id.orders_list);
         ordersList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -101,7 +100,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity
                                         {
                                             String uID = getRef(position).getKey();
 
-                                            RemoverOrder(uID);
+                                           // RemoverOrder(uID);
                                         }
                                         else
                                         {

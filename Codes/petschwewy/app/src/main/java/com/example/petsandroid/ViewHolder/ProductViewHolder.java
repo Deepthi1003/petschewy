@@ -1,13 +1,11 @@
 package com.example.petsandroid.ViewHolder;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.petsandroid.Interface.ItemClickListner;
 import com.example.petsandroid.R;
+
 
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
