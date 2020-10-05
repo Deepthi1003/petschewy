@@ -3,6 +3,7 @@
     package="com.example.petsandroid">
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +34,12 @@
         <activity android:name=".ShareActivity"></activity>
         <activity android:name=".AboutUsActivity"></activity>
         <activity android:name=".ContactUsActivity"></activity>
+
+        <activity android:name=".FAQ_Activity"></activity>
+        <activity android:name=".Send"></activity>
+        <activity android:name=".CheckoutActivity"></activity>
+
+        <activity android:name=".AuthorizeActivity"></activity>
 
 
         <activity android:name=".MainActivity"
