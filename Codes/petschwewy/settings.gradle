@@ -1,2 +1,3 @@
+include ':payment'
 include ':app'
 rootProject.name = "petsAndroid"
