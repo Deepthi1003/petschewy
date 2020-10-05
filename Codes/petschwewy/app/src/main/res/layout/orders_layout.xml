@@ -15,7 +15,7 @@
             android:id="@+id/order_user_name"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:text="UserName"
+            android:text="User Name"
             android:textColor="@android:color/white"
             android:textSize="15dp"
             android:layout_marginLeft="2dp"
@@ -85,7 +85,6 @@
             android:text="Show This Order Products"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="15dp"
-            android:textAllCaps="false"
             android:background="@android:color/white"
             android:layout_below="@+id/order_date_time"
             />
