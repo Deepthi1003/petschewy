@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +31,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/nav_cart" />
+        app:srcCompat="@drawable/ic_chat" />
+    <TextView
+        android:id="@+id/chat_badge"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/badge_red"
+        android:elevation="16dp"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="8dp"
+        android:visibility="gone"
+        tools:text="1" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

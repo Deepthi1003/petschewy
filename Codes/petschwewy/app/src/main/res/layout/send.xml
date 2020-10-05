@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:gravity="center"
+    android:orientation="vertical"
+  >
+
+
+
+
+    <Button
+        android:id="@+id/openPaymentWindowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:theme="@style/OpenPaymentWindowButton"
+        android:textColor="@color/colorText"
+        android:padding="25sp"
+        android:textSize="20sp"
+        android:text="Open Payment window"/>
+
+    <ProgressBar
+        android:id="@+id/openPaymentWindowProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/colorText"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_gravity="center"></ProgressBar>
+
+</LinearLayout>

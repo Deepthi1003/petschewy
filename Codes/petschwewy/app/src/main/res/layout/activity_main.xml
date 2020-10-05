@@ -5,21 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome"
+    android:background="@drawable/back"
     tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/app_logo"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:text="PETSCCHEWY"
-        android:textSize="40dp"
+        android:text="PETSCHEWY"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/colorAccent"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="60dp"
         />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/applogonew"
+        android:layout_toLeftOf="@id/app_slogan"
+        android:layout_marginTop="134dp"
+        android:layout_marginRight="20dp"
+
+        />
 
     <TextView
         android:id="@+id/app_slogan"
@@ -28,7 +39,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="134dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentRight="true"
         android:text="Find Food, Toys and a lot more fro your Pets"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -60,7 +72,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="@drawable/input_design"
+        android:background="@drawable/buttons"
         android:padding="20dp"
         android:textAllCaps="false"
         android:textSize="18sp"

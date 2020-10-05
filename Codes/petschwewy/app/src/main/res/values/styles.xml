@@ -15,4 +15,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="OpenPaymentWindowButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/colorText</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
 </resources>

@@ -4,30 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register"
+    android:background="@drawable/bg"
     tools:context=".RegisterActivity">
 
     <TextView
-        android:id="@+id/register_applogo"
+        android:id="@+id/app_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="PETSCHEWY"
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="60dp"
+        />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PETSCHEWY"
-        android:textColor="@color/colorText"
-        android:textSize="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
+        android:src="@drawable/applogonew"
+        android:layout_toLeftOf="@id/app_slogan"
+        android:layout_marginTop="134dp"
+        android:layout_marginRight="20dp"
+
         />
+
+    <TextView
+        android:id="@+id/app_slogan"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="134dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentRight="true"
+        android:text="Find Food, Toys and a lot more fro your Pets"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
 
     <EditText
         android:id="@+id/register_username_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/register_applogo"
+        android:layout_below="@+id/app_slogan"
         android:background="@drawable/input_design"
         android:padding="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:hint="Name"
         android:inputType="text"
         android:textColor="@color/colorPrimaryDark"

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10sp"
+    android:background="@color/colorAccent"
+   >
+
+    <TextView
+        android:id="@+id/authorizedHeaderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:text="The payment was Authorized"
+         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txnIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Transaction Id:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/orderidTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Order Id:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/referenceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Reference:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/amountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Amount:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/currencyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Currency:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Date:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Time:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/feeIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Fee Id:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/txnFeeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Transaction Fee:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/paymentTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Payment Type Id:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/cardNoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Card Number:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/eciTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="ECI:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/issuerCountryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Issuer Country:"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/hashTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="Hash:"
+                android:textColor="@color/colorText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txnIdDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/orderidDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/referenceDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/amountDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/currencyDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/dateDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/timeDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/feeIdDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/txnFeeDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/paymentTypeDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/cardNoDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/eciDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/issuerCountryDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+
+            <TextView
+                android:id="@+id/hashDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4sp"
+                android:text="N/A"
+                android:textColor="@color/colorText" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/goToMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_gravity="center"
+        android:theme="@style/OpenPaymentWindowButton"
+        android:textColor="@color/colorText"
+        android:padding="25sp"
+        android:textSize="20sp"
+        android:text="Go back to Main page"
+        />
+
+</LinearLayout>
