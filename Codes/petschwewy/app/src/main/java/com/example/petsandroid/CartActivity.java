@@ -43,7 +43,7 @@ public class CartActivity extends AppCompatActivity
     private TextView txtTotalAmount, txtMsg1;
 
     private int overTotalPrice = 0;
-ArrayList<String> prodid;
+    ArrayList<String> prodid;
 
 
     @Override
@@ -59,7 +59,7 @@ ArrayList<String> prodid;
         recyclerView.setLayoutManager(layoutManager);
 
         NextProcessBtn = (Button) findViewById(R.id.next_btn);
-        txtTotalAmount = (TextView) findViewById(R.id.total_price);
+        txtTotalAmount = (TextView) findViewById(R.id.pagetitle);
         txtMsg1 = (TextView) findViewById(R.id.msg1);
 
 prodid=new ArrayList<String>();
@@ -67,12 +67,22 @@ prodid=new ArrayList<String>();
             @Override
             public void onClick(View view)
             {
-                txtTotalAmount.setText("Total Price = $" + String.valueOf(overTotalPrice));
 
-                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
-                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                startActivity(intent);
-                finish();
+                if(overTotalPrice==0){
+
+
+
+                }
+                else {
+
+
+                    txtTotalAmount.setText("Total Price = $" + String.valueOf(overTotalPrice));
+                    Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
+                    intent.putStringArrayListExtra("proaddlist", prodid);
+                    intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
@@ -104,9 +114,14 @@ prodid=new ArrayList<String>();
                 holder.txtProductPrice.setText("Price " + model.getPrice() + "$");
                 holder.txtProductName.setText(model.getPname());
 
+
+
                 int oneTyprProductTPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
                 overTotalPrice = overTotalPrice + oneTyprProductTPrice;
                  prodid.add(model.getPid());
+                Log.d("hello",model.getQuantity());
+
+
                 Log.d("product is", String.valueOf(prodid));
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

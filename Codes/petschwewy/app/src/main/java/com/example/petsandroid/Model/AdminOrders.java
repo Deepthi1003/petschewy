@@ -1,11 +1,13 @@
 package com.example.petsandroid.Model;
 
-public class AdminOrders
-{
-    private String name, phone, address, city, state, date, time, totalAmount;
+import java.util.ArrayList;
+import java.util.Map;
 
-    public AdminOrders() {
-    }
+public class AdminOrders extends ArrayList<AdminOrders> {
+    private String name, phone, address, city, state, date, time, totalAmount;
+    private ArrayList<String> product;
+//    public AdminOrders(ArrayList<AdminOrders> list) {
+//    }
 
     public AdminOrders(String name, String phone, String address, String city, String state, String date, String time, String totalAmount) {
         this.name = name;
@@ -16,6 +18,43 @@ public class AdminOrders
         this.date = date;
         this.time = time;
         this.totalAmount = totalAmount;
+        this.product = product;
+    }
+
+
+
+    public AdminOrders(AdminOrders adminOrders) {
+        this.setName(adminOrders.getName());
+        this.setPhone(adminOrders.getPhone());
+        this.setAddress(adminOrders.getAddress());
+        this.setCity(adminOrders.getCity());
+        this.setState(adminOrders.getState());
+        this.setDate(adminOrders.getDate());
+        this.setTime(adminOrders.getTime());
+        this.setTotalAmount(adminOrders.getTotalAmount());
+    }
+//    public AdminOrders(Map map) {
+//    }
+
+    public ArrayList<String> getProduct() {
+        return product;
+    }
+
+    public void setProduct(ArrayList<String> product) {
+        this.product = product;
+    }
+
+    public AdminOrders(Map params) {
+        //this.setProduct((ArrayList<String>) params.get("Product"));
+        this.setName((String) "Name: "+params.get("name"));
+        this.setPhone((String) "Phone: "+params.get("phone"));
+        this.setAddress((String) "Address: "+params.get("address"));
+        this.setCity((String) "City :"+params.get("city"));
+        this.setState((String) "Status: "+params.get("state"));
+        this.setDate((String) "Date:"+params.get("date"));
+        this.setTime((String) "Time:"+params.get("time"));
+        this.setTotalAmount((String) "Total Amount: "+params.get("totalAmount"));
+
     }
 
     public String getName() {
@@ -81,4 +120,5 @@ public class AdminOrders
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
     }
+
 }

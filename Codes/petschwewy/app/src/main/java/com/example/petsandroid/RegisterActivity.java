@@ -26,7 +26,7 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity
 {
     private Button CreateAccountButton;
-    private EditText InputName, InputPhoneNumber, InputPassword;
+    private EditText InputName, InputPhoneNumber, InputPassword,InputEmail;
     private ProgressDialog loadingBar;
 
 
@@ -41,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity
         InputName = (EditText) findViewById(R.id.register_username_input);
         InputPassword = (EditText) findViewById(R.id.register_password_input);
         InputPhoneNumber = (EditText) findViewById(R.id.register_phone_number_input);
+        InputEmail=(EditText)findViewById(R.id.register_email_input);
         loadingBar = new ProgressDialog(this);
 
 
@@ -60,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity
         String name = InputName.getText().toString();
         String phone = InputPhoneNumber.getText().toString();
         String password = InputPassword.getText().toString();
+        String email=InputEmail.getText().toString();
         String usertype="user";
 
         if (TextUtils.isEmpty(name))
@@ -74,6 +76,10 @@ public class RegisterActivity extends AppCompatActivity
         {
             Toast.makeText(this, "Please write your password...", Toast.LENGTH_SHORT).show();
         }
+        else if (TextUtils.isEmpty(email))
+        {
+            Toast.makeText(this, "Please write your Email...", Toast.LENGTH_SHORT).show();
+        }
         else
         {
             loadingBar.setTitle("Create Account");
@@ -81,13 +87,13 @@ public class RegisterActivity extends AppCompatActivity
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            ValidatephoneNumber(name, phone, password,usertype);
+            ValidatephoneNumber(name, phone, password,usertype,email);
         }
     }
 
 
 
-    private void ValidatephoneNumber(final String name, final String phone, final String password,final String usertype)
+    private void ValidatephoneNumber(final String name, final String phone, final String password,final String usertype,final String email)
     {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -103,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity
                     userdataMap.put("password", password);
                     userdataMap.put("name", name);
                     userdataMap.put("usertype",usertype);
+                    userdataMap.put("email",email);
 
                     RootRef.child("Users").child(phone).updateChildren(userdataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -114,6 +121,9 @@ public class RegisterActivity extends AppCompatActivity
                                         Toast.makeText(RegisterActivity.this, "Congratulations, your account has been created.", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
 
+                                        JavaMailAPI javaMailAPI = new JavaMailAPI(RegisterActivity.this,email,"PETSCHEWY APP-REGISTRATION","Congratulations, your account has been created.\n"+" Your username: "+phone+"\n"+"Password: "+password);
+
+                                        javaMailAPI.execute();
                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                         startActivity(intent);
                                     }

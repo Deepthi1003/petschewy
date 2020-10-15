@@ -228,6 +228,10 @@ public class SettinsActivity extends AppCompatActivity
 
                         progressDialog.dismiss();
 
+
+                        JavaMailAPI javaMailAPI = new JavaMailAPI(SettinsActivity.this,Prevalent.currentOnlineUser.getEmail(),"PETSCHEWY APP- Profile Updated","Profile Info update successfully.");
+
+                        javaMailAPI.execute();
                         startActivity(new Intent(SettinsActivity.this, HomeActivity.class));
                         Toast.makeText(SettinsActivity.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
                         finish();

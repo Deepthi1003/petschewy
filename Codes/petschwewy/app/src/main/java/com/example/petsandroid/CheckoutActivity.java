@@ -32,6 +32,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.payment.BamboraCheckout;
 import com.example.payment.enums.CheckoutEvents;
@@ -47,6 +48,10 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Checkout");
+        setSupportActionBar(toolbar);
         Intent intent = getIntent();
         String token = intent.getStringExtra("checkoutToken");
         WebView webView = findViewById(R.id.checkoutWebview);
@@ -91,7 +96,7 @@ public class CheckoutActivity extends AppCompatActivity {
         declineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent mainIntent = new Intent(getApplicationContext(), ConfirmFinalOrderActivity.class);
                 startActivity(mainIntent);
             }
         });

@@ -7,6 +7,13 @@ public class Products
     public Products() {
     }
 
+
+    public Products(String pname, String description, String price){
+        this.pname = pname;
+        this.description = description;
+        this.price = price;
+    }
+
     public Products(String pname, String description, String price, String image, String category, String pid, String date, String time) {
         this.pname = pname;
         this.description = description;

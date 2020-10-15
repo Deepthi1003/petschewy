@@ -29,6 +29,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,13 +44,17 @@ public class AuthorizeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String jsonPayload = intent.getStringExtra("payload");
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Checkout");
+        setSupportActionBar(toolbar);
+
         setViewData(jsonPayload);
 
         Button goToMain = (Button) findViewById(R.id.goToMainButton);
         goToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent mainIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(mainIntent);
             }
         });

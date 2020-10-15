@@ -1,7 +1,10 @@
 package com.example.petsandroid.Model;
 
+import java.util.ArrayList;
+
 public class OrderHistory {
     private String name,date,address,state;
+    private ArrayList<String> prodid;
 
     public OrderHistory() {
     }
@@ -43,5 +46,9 @@ public class OrderHistory {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public ArrayList<String> getProdid() {
+        return prodid;
     }
 }

@@ -9,13 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.petsandroid.Model.Cart;
 import com.example.petsandroid.Prevalent.Prevalent;
+import com.example.petsandroid.ViewHolder.CartViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +32,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Random;
@@ -45,8 +52,9 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
 
     private String totalAmount = "";
     private String productRandomKey;
-
-
+    private RadioGroup radioSexGroup;
+    private RadioButton radioSexButton;
+    ArrayList<String> stock_list;
     private final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private ProgressBar progressBar;
     private Button openPaymentWindowButton;
@@ -58,6 +66,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_final_order);
+        radioSexGroup = (RadioGroup) findViewById(R.id.radioSex);
 
         checkoutUrl = "https://api.v1.checkout.bambora.com/sessions";
         apiKey = "RHZ6RkdBcTVEOExMVmpOS29vM2NAVDEwNTExMzcwMTpQZ3VtUDVhUWs2NWdFcExUcU5Pd29CV1drNVVlZFI5REpCTjdibU9r";
@@ -68,7 +77,10 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
 
         totalAmount = getIntent().getStringExtra("Total Price");
         Toast.makeText(this, "Total Price =  $ " + totalAmount, Toast.LENGTH_SHORT).show();
+        stock_list = new ArrayList<String>();
 
+        stock_list = getIntent().getStringArrayListExtra("proaddlist");
+        Log.d("product is confirm", String.valueOf(stock_list));
 
         confirmOrderBtn = (Button) findViewById(R.id.confirm_final_order_btn);
         nameEditText = (EditText) findViewById(R.id.shippment_name);
@@ -81,14 +93,21 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Check();
+
+                int selectedId = radioSexGroup.getCheckedRadioButtonId();
+
+                radioSexButton = (RadioButton) findViewById(selectedId);
+
+                Toast.makeText(ConfirmFinalOrderActivity.this, radioSexButton.getText(), Toast.LENGTH_SHORT).show();
+
+                Check((String) radioSexButton.getText());
             }
         });
     }
 
 
 
-    private void Check()
+    private void Check(String radio)
     {
         if (TextUtils.isEmpty(nameEditText.getText().toString()))
         {
@@ -108,11 +127,16 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
         }
         else
         {
-            ConfirmOrder();
+
+
+
+                ConfirmOrder(radio);
+
+
         }
     }
 
-    private void ConfirmOrder(){
+    private void ConfirmOrder(String rad){
         final String saveCurrentDate, saveCurrentTime;
 
         Calendar calendar = Calendar.getInstance();
@@ -125,11 +149,16 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
         Log.d("time", saveCurrentTime);
 
 
+
+
+
         productRandomKey = saveCurrentDate + saveCurrentTime;
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Orders");
 
+
         HashMap<String, Object> ordersMap = new HashMap<>();
+        ordersMap.put("Product", stock_list);
         ordersMap.put("totalAmount", totalAmount);
         ordersMap.put("name", nameEditText.getText().toString());
         ordersMap.put("phone", phoneEditText.getText().toString());
@@ -147,17 +176,15 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
                     {
                         if (task.isSuccessful())
                         {
-                            cartListRef.child(Prevalent.currentOnlineUser.getPhone())
-                                    .updateChildren(ordersMap)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task)
-                                        {
-                                            if (task.isSuccessful())
-                                            {
 
-                                                FirebaseDatabase.getInstance().getReference()
-                            .child("Cart List")
+
+                            JavaMailAPI javaMailAPI = new JavaMailAPI(ConfirmFinalOrderActivity.this,Prevalent.currentOnlineUser.getEmail(),"PETSCHEWY APP- ORDER CONFIRMATION","Congratulations, you have placed your Order.\n"+"Your Order Details.\n"+"Order ID: " +
+                                    ""+productRandomKey+"\n"+"Order Total Amount: "+totalAmount
+                            +"\n Shipping Address: "+addressEditText.getText().toString()+"\n"+"\n"+"Thanks, "+"\n"+"PETCHWEY APP");
+
+                            javaMailAPI.execute();
+
+                             FirebaseDatabase.getInstance().getReference().child("Cart List")
                             .child("User View")
                             .child(Prevalent.currentOnlineUser.getPhone())
                             .removeValue()
@@ -168,66 +195,68 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
                                     if (task.isSuccessful())
                                     {
                                        // Toast.makeText(ConfirmFinalOrderActivity.this, "your final order has been placed successfully.", Toast.LENGTH_SHORT).show();
+                                        if(rad.equals("Pay Online")) {
 
-
-                                        try {
-                                           // openPaymentWindowButton.setVisibility(View.GONE);
-                                            progressBar.setVisibility(View.VISIBLE);
-                                            String checkoutRequestJson = createCheckoutRequest();
-                                            createCheckoutSession(checkoutRequestJson, new Callback() {
-                                                @Override
-                                                public void onFailure(Call call, IOException e) {
-                                                    //Do Stuff
-                                                }
-
-                                                @Override
-                                                public void onResponse(Call call, Response response) throws IOException {
-                                                    try {
-                                                        JSONObject resp =  new JSONObject(response.body().string());
-                                                        if((boolean)resp.getJSONObject("meta").get("result") == true) {
-                                                            Intent checkoutIntent = new Intent(getApplicationContext(), CheckoutActivity.class);
-                                                            checkoutIntent.putExtra("checkoutToken", resp.getString("token"));
-                                                            startActivity(checkoutIntent);
-                                                        } else {
-                                                            final String merchantMessage = resp.getJSONObject("meta").getJSONObject("message").getString("merchant");
-                                                            runOnUiThread(new Runnable() {
-                                                                @Override
-                                                                public void run() {
-                                                                    Toast.makeText(getApplicationContext(), "An error occurred: " + merchantMessage, Toast.LENGTH_LONG).show();
-                                                                  //  openPaymentWindowButton.setVisibility(View.VISIBLE);
-                                                                    progressBar.setVisibility(View.GONE);
-                                                                }
-                                                            });
-
-                                                        }
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
+                                            try {
+                                                confirmOrderBtn.setVisibility(View.GONE);
+                                                //progressBar.setVisibility(View.VISIBLE);
+                                                String checkoutRequestJson = createCheckoutRequest();
+                                                createCheckoutSession(checkoutRequestJson, new Callback() {
+                                                    @Override
+                                                    public void onFailure(Call call, IOException e) {
+                                                        //Do Stuff
                                                     }
-                                                }
-                                            });
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
+
+                                                    @Override
+                                                    public void onResponse(Call call, Response response) throws IOException {
+                                                        try {
+                                                            JSONObject resp = new JSONObject(response.body().string());
+                                                            if ((boolean) resp.getJSONObject("meta").get("result") == true) {
+                                                                Intent checkoutIntent = new Intent(getApplicationContext(), CheckoutActivity.class);
+                                                                checkoutIntent.putExtra("checkoutToken", resp.getString("token"));
+                                                                startActivity(checkoutIntent);
+                                                            } else {
+                                                                final String merchantMessage = resp.getJSONObject("meta").getJSONObject("message").getString("merchant");
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        Toast.makeText(getApplicationContext(), "An error occurred: " + merchantMessage, Toast.LENGTH_LONG).show();
+                                                                        confirmOrderBtn.setVisibility(View.VISIBLE);
+                                                                        progressBar.setVisibility(View.GONE);
+                                                                    }
+                                                                });
+
+                                                            }
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                });
+
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+
                                         }
+                                        else{
 
+                                            Toast.makeText(ConfirmFinalOrderActivity.this, "Congratulations your order has been placed", Toast.LENGTH_SHORT).show();
+                                            Intent i =new Intent(ConfirmFinalOrderActivity.this,HomeActivity.class );
+                                            startActivity(i);
 
-//                                        Intent intent = new Intent(ConfirmFinalOrderActivity.this, Send.class);
-//                                        intent.putExtra("price", totalAmount);
-//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                        startActivity(intent);
-//                                        finish();
+                                        }
+//
                                     }
                                 }
                             });
-//                                                Toast.makeText(ConfirmFinalOrderActivity.this, "Your Order Placed", Toast.LENGTH_SHORT).show();
 //
-//                                                Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
-//                                                startActivity(intent);
-                                            }
-                                        }
-                                    });
-                        }
+//                                            }// task succes
+//                                        }//on complete
+//                                    });//add on compl
+                        } //
                     }
                 });
 
@@ -237,61 +266,6 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
 
     }
 
-//    private void ConfirmOrder()
-//    {
-//        final String saveCurrentDate, saveCurrentTime;
-//
-//        Calendar calForDate = Calendar.getInstance();
-//        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-//        saveCurrentDate = currentDate.format(calForDate.getTime());
-//
-//        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-//        saveCurrentTime = currentDate.format(calForDate.getTime());
-//
-//        final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference()
-//                .child("Orders")
-//                .child(Prevalent.currentOnlineUser.getPhone());
-//
-//        HashMap<String, Object> ordersMap = new HashMap<>();
-//        ordersMap.put("totalAmount", totalAmount);
-//        ordersMap.put("name", nameEditText.getText().toString());
-//        ordersMap.put("phone", phoneEditText.getText().toString());
-//        ordersMap.put("address", addressEditText.getText().toString());
-//        ordersMap.put("city", cityEditText.getText().toString());
-//        ordersMap.put("date", saveCurrentDate);
-//        ordersMap.put("time", saveCurrentTime);
-//        ordersMap.put("state", "not shipped");
-//
-//        ordersRef.updateChildren(ordersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task)
-//            {
-//                if (task.isSuccessful())
-//                {
-//                    FirebaseDatabase.getInstance().getReference()
-//                            .child("Cart List")
-//                            .child("User View")
-//                            .child(Prevalent.currentOnlineUser.getPhone())
-//                            .removeValue()
-//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task)
-//                                {
-//                                    if (task.isSuccessful())
-//                                    {
-//                                        Toast.makeText(ConfirmFinalOrderActivity.this, "your final order has been placed successfully.", Toast.LENGTH_SHORT).show();
-//
-//                                        Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
-//                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                        startActivity(intent);
-//                                        finish();
-//                                    }
-//                                }
-//                            });
-//                }
-//            }
-//        });
-//    }
 
     public String createCheckoutRequest() throws JSONException {
 
@@ -300,7 +274,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity
         JSONObject checkoutOrder = new JSONObject();
         checkoutOrder.put("id", String.valueOf(orderId));
         checkoutOrder.put("amount", totalAmount);
-        checkoutOrder.put("currency", "USD");
+        checkoutOrder.put("currency", "EUR");
 
         JSONObject checkoutUrl = new JSONObject();
         checkoutUrl.put("accept", "https://checkout-sdk-demo.bambora.com/accept");
