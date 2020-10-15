@@ -182,7 +182,6 @@ verifyUser();
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String mphone = dataSnapshot.child("phone").getValue().toString();
 
 
                         if (dataSnapshot.hasChild("Security Questions")) {
