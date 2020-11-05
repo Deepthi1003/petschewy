@@ -6,8 +6,7 @@ import java.util.Map;
 public class AdminOrders extends ArrayList<AdminOrders> {
     private String name, phone, address, city, state, date, time, totalAmount;
     private ArrayList<String> product;
-//    public AdminOrders(ArrayList<AdminOrders> list) {
-//    }
+
 
     public AdminOrders(String name, String phone, String address, String city, String state, String date, String time, String totalAmount) {
         this.name = name;

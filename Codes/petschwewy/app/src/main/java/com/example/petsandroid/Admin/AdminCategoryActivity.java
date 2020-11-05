@@ -15,9 +15,9 @@ import com.example.petsandroid.R;
 
 public class AdminCategoryActivity extends AppCompatActivity
 {
-    private ImageView cate_pets, sportsTShirts, femaleDresses, sweathers;
-    private ImageView glasses, hatsCaps, walletsBagsPurses, shoes;
-    private ImageView headPhonesHandFree, Laptops, watches, mobilePhones;
+    private ImageView cate_pets, sportsTShirts, femaleDresses;
+    private ImageView glasses, hatsCaps, walletsBagsPurses;
+    private ImageView headPhonesHandFree, Laptops, watches ;
 
     private Button LogoutBtn, CheckOrdersBtn, maintainProductsBtn;
 
@@ -70,19 +70,19 @@ public class AdminCategoryActivity extends AppCompatActivity
         cate_pets = (ImageView) findViewById(R.id.cate_pets);
         sportsTShirts = (ImageView) findViewById(R.id.sports_t_shirts);
         femaleDresses = (ImageView) findViewById(R.id.female_dresses);
-      //  sweathers = (ImageView) findViewById(R.id.sweathers);
+
 
         glasses = (ImageView) findViewById(R.id.glasses);
         hatsCaps = (ImageView) findViewById(R.id.hats_caps);
         walletsBagsPurses = (ImageView) findViewById(R.id.purses_bags_wallets);
-      //  shoes = (ImageView) findViewById(R.id.shoes);
+
 
         headPhonesHandFree = (ImageView) findViewById(R.id.headphones_handfree);
         Laptops = (ImageView) findViewById(R.id.laptop_pc);
         watches = (ImageView) findViewById(R.id.watches);
 
 
-      //  mobilePhones = (ImageView) findViewById(R.id.mobilephones);
+
 
 
         cate_pets.setOnClickListener(new View.OnClickListener() {
