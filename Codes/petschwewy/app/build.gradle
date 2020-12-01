@@ -63,6 +63,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-crash:9.4.0'
 
 
+
+
+
     implementation 'com.android.support:multidex:1.0.3'
     compile 'com.github.livechat:chat-window-android:v2.1.2'
 
@@ -73,4 +76,6 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
+
+
 }
